@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varanasi Public School | Teachers' Day Tribute</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. GLOBAL DESIGN SYSTEM — BLACKISH-WHITE THEME
+       ========================================================================== */
+    :root {
+      --bg-black: #08080a;
+      --bg-dark-card: rgba(18, 18, 22, 0.85);
+      --bg-charcoal: #111115;
+      
+      --accent-red: #e63946;
+      --deep-crimson: #9e1b27;
+      --glow-crimson: rgba(230, 57, 70, 0.25);
+      
+      --pure-white: #ffffff;
+      --soft-white: #e2e2e8;
+      --text-muted: #9494a0;
+      
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6);
+
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-code: 'Fira Code', monospace;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-black);
+      color: var(--soft-white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Custom Glow Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--glow-crimson);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      backdrop-filter: blur(2px);
+      border: 1px solid var(--accent-red);
+    }
+
+    /* Global Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8, 8, 10, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--pure-white);
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent-red);
+      transition: width 0.3s var(--transition-smooth);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--pure-white); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 2px; background-color: var(--pure-white); }
+
+    /* Page View Controller */
+    .page-section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 80px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .page-section.active-section { display: block; opacity: 1; }
+
+    /* Base Glass Card */
+    .glass-card {
+      background: var(--bg-dark-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: var(--glass-shadow);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s var(--transition-smooth), box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .glass-card:hover {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      transform: translateY(-4px);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--accent-red), var(--deep-crimson));
+      color: var(--pure-white);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 20px var(--glow-crimson);
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(230, 57, 70, 0.4); }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      color: var(--pure-white);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--pure-white); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--transition-smooth); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Navigation Back Button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .back-btn:hover { color: var(--accent-red); }
+
+    /* ==========================================================================
+       2. HERO SECTION
+       ========================================================================== */
+    .hero-container {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      background: radial-gradient(circle at center, rgba(230, 57, 70, 0.08) 0%, transparent 70%);
+      overflow: hidden;
+    }
+    .hero-content { max-width: 900px; z-index: 2; }
+    .school-badge { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-red); font-weight: 700; margin-bottom: 1rem; }
+    .hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--pure-white); margin-bottom: 1.5rem; line-height: 1.15; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .bg-symbols { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; opacity: 0.15; font-size: 1.8rem; }
+    .floating-symbol { position: absolute; animation: floatSymbol 8s infinite ease-in-out; color: var(--pure-white); }
+    @keyframes floatSymbol { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
+
+    /* ==========================================================================
+       3. TEACHERS INDEX PAGE
+       ========================================================================== */
+    .section-container { padding: 4rem 4rem; max-width: 1300px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { font-family: var(--font-heading); font-size: 2.8rem; color: var(--pure-white); }
+    .teachers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+    .subject-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 0.5rem; }
+    .teacher-name { font-family: var(--font-heading); font-size: 1.9rem; color: var(--pure-white); margin-bottom: 1rem; }
+    .quote-box { font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; padding-left: 1rem; }
+
+    .theme-icon-bg { position: absolute; right: 20px; top: 20px; font-size: 2.5rem; opacity: 0.15; transition: all 0.4s ease; }
+    .glass-card:hover .theme-icon-bg { opacity: 0.4; transform: scale(1.15) rotate(5deg); }
+
+    .theme-math { border: 1px solid rgba(230, 57, 70, 0.25); background: radial-gradient(circle at top right, rgba(230, 57, 70, 0.12), transparent 60%), var(--bg-dark-card); }
+    .theme-math .subject-tag { color: #ff4d5e; }
+    .theme-math .quote-box { border-left: 2px solid #ff4d5e; }
+
+    .theme-english { border: 1px solid rgba(241, 250, 238, 0.2); background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 60%), var(--bg-dark-card); }
+    .theme-english .subject-tag { color: #f1faee; letter-spacing: 3px; }
+    .theme-english .quote-box { border-left: 2px solid #f1faee; }
+
+    .theme-chemistry { border: 1px solid rgba(168, 28, 40, 0.3); background: radial-gradient(circle at bottom left, rgba(168, 28, 40, 0.2), transparent 60%), var(--bg-dark-card); }
+    .theme-chemistry .subject-tag { color: #e63946; }
+    .theme-chemistry .quote-box { border-left: 2px solid #e63946; }
+
+    .theme-physics { border: 1px solid rgba(69, 123, 157, 0.3); background: radial-gradient(circle at top right, rgba(69, 123, 157, 0.18), transparent 60%), var(--bg-dark-card); }
+    .theme-physics .subject-tag { color: #a8dadc; }
+    .theme-physics .quote-box { border-left: 2px solid #457b9d; }
+
+    .theme-ai { border: 1px solid rgba(255, 42, 75, 0.4); background: radial-gradient(circle at bottom right, rgba(255, 42, 75, 0.2), transparent 70%), var(--bg-dark-card); }
+    .theme-ai .subject-tag { color: #ff2a4b; font-family: var(--font-code); }
+    .theme-ai .quote-box { border-left: 2px solid #ff2a4b; }
+
+    /* ==========================================================================
+       4. DEDICATED TEACHER SEPARATE WEB PAGES & TRIBUTE STYLES
+       ========================================================================== */
+    .teacher-page-hero {
+      padding: 3.5rem;
+      border-radius: 20px;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    .teacher-page-title { font-family: var(--font-heading); font-size: 3.2rem; color: var(--pure-white); margin-bottom: 0.5rem; }
+    .teacher-page-sub { font-size: 1.2rem; color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+    
+    .tribute-points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .tribute-point-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+    .tribute-point-title {
+      font-weight: 700;
+      color: var(--pure-white);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .interactive-widget-box {
+      background: var(--bg-charcoal);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .widget-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem; color: var(--pure-white); }
+    
+    .interactive-display {
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-family: var(--font-code);
+      color: #00ffcc;
+      min-height: 120px;
+      margin-top: 1rem;
+    }
+
+    /* ==========================================================================
+       5. OTHER SECTIONS (TRIBUTE, MEMORIES, THANK YOU, CREDITS)
+       ========================================================================== */
+    .tribute-container { min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem; text-align: center; }
+    .tribute-step { margin: 2.5rem 0; }
+    .statement { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--pure-white); }
+    .climax-text { font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--accent-red); font-weight: 800; text-shadow: 0 0 30px var(--glow-crimson); }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .gallery-item {
+      height: 250px; border-radius: 12px; background: var(--bg-dark-card); border: 1px solid var(--glass-border);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--pure-white);
+      font-weight: 600; transition: all 0.3s ease; cursor: pointer; padding: 1rem; text-align: center;
+    }
+    .gallery-item:hover { transform: scale(1.03); border-color: var(--accent-red); box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px var(--glow-crimson); }
+
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: none; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-content { background: var(--bg-charcoal); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; max-width: 500px; text-align: center; }
+
+    .letter-container { padding: 4rem 2rem; max-width: 800px; margin: 0 auto; }
+    .letter-card { background: var(--bg-dark-card); border: 1px solid var(--glass-border); border-radius: 12px; padding: 3.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+    .letter-title { font-family: var(--font-heading); color: var(--pure-white); margin-bottom: 2rem; }
+    .letter-body { font-size: 1.1rem; line-height: 1.8; color: var(--soft-white); }
+    .signature-block { margin-top: 3rem; text-align: right; }
+    .sig-text { font-family: var(--font-heading); font-style: italic; color: var(--accent-red); font-size: 1.2rem; }
+
+    .credits-container { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+    .member-card { padding: 1.5rem; border-radius: 12px; background: var(--bg-dark-card); border: 1px solid var(--glass-border); font-weight: 600; color: var(--pure-white); }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 1rem 2rem; }
+      .nav-links { position: fixed; top: 60px; right: -100%; width: 100%; height: calc(100vh - 60px); background: var(--bg-black); flex-direction: column; align-items: center; justify-content: center; transition: 0.4s ease; }
+      .nav-links.active { right: 0; }
+      .hamburger { display: flex; }
+      .section-container { padding: 2rem 1.5rem; }
+      .letter-card { padding: 2rem; }
+      .teacher-page-hero { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Glow Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="brand-logo" onclick="switchPage('home')">VARANASI PUBLIC SCHOOL</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a class="nav-item active" onclick="switchPage('home')">Home</a></li>
+      <li><a class="nav-item" onclick="switchPage('teachers')">Teachers</a></li>
+      <li><a class="nav-item" onclick="switchPage('tribute')">Tribute</a></li>
+      <li><a class="nav-item" onclick="switchPage('memories')">Memories</a></li>
+      <li><a class="nav-item" onclick="switchPage('thankyou')">Thank You</a></li>
+      <li><a class="nav-item" onclick="switchPage('credits')">Credits</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- PAGE 1: HOME HERO -->
+  <section id="home" class="page-section active-section">
+    <div class="hero-container">
+      <div class="bg-symbols">
+        <span class="floating-symbol" style="top: 20%; left: 15%;">∫ f(x)dx</span>
+        <span class="floating-symbol" style="top: 65%; left: 10%;">E = mc²</span>
+        <span class="floating-symbol" style="top: 25%; right: 12%;">C₆H₁₂O₆</span>
+        <span class="floating-symbol" style="top: 75%; right: 18%;">&lt;AI /&gt;</span>
+        <span class="floating-symbol" style="top: 45%; left: 80%;">📖</span>
+      </div>
+
+      <div class="hero-content">
+        <div class="school-badge">VARANASI PUBLIC SCHOOL</div>
+        <h1 class="hero-title">To the Teachers Who Shape Our Future</h1>
+        <p class="hero-subtitle">A heartfelt tribute from the students of Class 12 AI to the incredible teachers of Varanasi Public School.</p>
+        <div class="btn-group">
+          <button class="btn-primary" onclick="switchPage('teachers')">Meet Our Teachers →</button>
+          <button class="btn-secondary" onclick="switchPage('tribute')">Explore Our Tribute</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: TEACHERS DIRECTORY -->
+  <section id="teachers" class="page-section">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <h1 class="section-title">Our Honorable Teachers</h1>
+        <p style="color: var(--text-muted);">Click any teacher's card to open their dedicated personal webpage & tributes.</p>
+      </div>
+
+      <div class="teachers-grid">
+        <!-- Abhishek Sir Card -->
+        <article class="glass-card teacher-card theme-math reveal" onclick="switchPage('teacher-abhishek')">
+          <div class="theme-icon-bg">📐</div>
+          <div class="subject-tag">Mathematics</div>
+          <h2 class="teacher-name">Abhishek Sir</h2>
+          <div class="quote-box">"Behind every solved equation is a teacher who taught us how to think logic into clarity."</div>
+          <p>Click to view Abhishek Sir's full personal tribute page & interactive solver →</p>
+        </article>
+
+        <!-- Avanish Sir Card -->
+        <article class="glass-card teacher-card theme-english reveal" onclick="switchPage('teacher-avanish')">
+          <div class="theme-icon-bg">✒️</div>
+          <div class="subject-tag">English Literature</div>
+          <h2 class="teacher-name">Avanish Sir</h2>
+          <div class="quote-box">"Words create worlds, and you gave us the keys to express our thoughts with grace."</div>
+          <p>Click to view Avanish Sir's full personal tribute page & literary engine →</p>
+        </article>
+
+        <!-- Vaibhav Sir Card -->
+        <article class="glass-card teacher-card theme-chemistry reveal" onclick="switchPage('teacher-vaibhav')">
+          <div class="theme-icon-bg">🧪</div>
+          <div class="subject-tag">Chemistry</div>
+          <h2 class="teacher-name">Vaibhav Sir</h2>
+          <div class="quote-box">"Elements bond through reactions; understanding bonds through your unwavering guidance."</div>
+          <p>Click to view Vaibhav Sir's full personal tribute page & lab simulator →</p>
+        </article>
+
+        <!-- Sonu Sir Card -->
+        <article class="glass-card teacher-card theme-physics reveal" onclick="switchPage('teacher-sonu')">
+          <div class="theme-icon-bg">⚛️</div>
+          <div class="subject-tag">Physics</div>
+          <h2 class="teacher-name">Sonu Sir</h2>
+          <div class="quote-box">"Understanding motion and force allows us to move the world forward with purpose."</div>
+          <p>Click to view Sonu Sir's full personal tribute page & motion simulator →</p>
+        </article>
+
+        <!-- Sandeep Sir Card -->
+        <article class="glass-card teacher-card theme-ai reveal" onclick="switchPage('teacher-sandeep')">
+          <div class="theme-icon-bg">🧠</div>
+          <div class="subject-tag">Artificial Intelligence</div>
+          <h2 class="teacher-name">Sandeep Sir</h2>
+          <div class="quote-box">"Algorithms optimize pathways; great teachers optimize human potential."</div>
+          <p>Click to view Sandeep Sir's full personal tribute page & neural network trainer →</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PAGE 2.1: DEDICATED PAGE — ABHISHEK SIR (MATHEMATICS)
+     ========================================================================== -->
+  <section id="teacher-abhishek" class="page-section">
+    <div class="section-container">
+      <div class="back-btn" onclick="switchPage('teachers')">← Back to All Teachers</div>
+      
+      <div class="teacher-page-hero theme-math">
+        <div class="teacher-page-sub">Department of Mathematics</div>
+        <h1 class="teacher-page-title">Abhishek Sir</h1>
+        <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Master of Logic, Architect of Precision, and Mentor of Analytical Minds."</p>
+      </div>
+
+      <!-- TRIBUTE SECTION FOR ABHISHEK SIR -->
+      <div class="glass-card reveal" style="margin-bottom: 2rem;">
+        <h2 style="color: #ff4d5e; margin-bottom: 1rem; font-family: var(--font-heading);">Heartfelt Tributes to Abhishek Sir</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          Mathematics can often feel intimidating, but in your classroom, complex formulas and integrals turn into clear steps of logic. You have taught us that every problem, no matter how intricate, has a solution if we break it down with patience and structured thinking.
+        </p>
+
+        <div class="tribute-points-grid">
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>✨</span> Methodical Clarity</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You never let us memorize steps blindly; you taught us the 'why' behind every theorem.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🎯</span> Problem-Solving Mindset</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You showed us that making mistakes in calculations is just one step closer to finding the correct answer.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>💡</span> Inspiring Confidence</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Your belief in our capability has transformed board-level mathematics from a fear into a favorite subject.</p>
+          </div>
+        </div>
+
+        <blockquote style="border-left: 3px solid #ff4d5e; padding-left: 1rem; font-style: italic; color: var(--soft-white); margin-top: 1rem;">
+          "Thank you, Abhishek Sir, for teaching us that life, just like mathematics, is all about solving equations step by step with confidence!"
+        </blockquote>
+      </div>
+
+      <!-- INTERACTIVE WIDGET -->
+      <div class="glass-card reveal">
+        <div class="interactive-widget-box" style="margin-top:0;">
+          <div class="widget-title">📐 Interactive Equation Step-Through</div>
+          <p style="color: var(--text-muted);">Step through the mathematical logic crafted in Abhishek Sir's lectures:</p>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="nextMathStep()">Next Proof Step</button>
+          <div class="interactive-display" id="mathDisplay">Click 'Next Proof Step' to begin solution walkthrough...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PAGE 2.2: DEDICATED PAGE — AVANISH SIR (ENGLISH)
+     ========================================================================== -->
+  <section id="teacher-avanish" class="page-section">
+    <div class="section-container">
+      <div class="back-btn" onclick="switchPage('teachers')">← Back to All Teachers</div>
+      
+      <div class="teacher-page-hero theme-english">
+        <div class="teacher-page-sub">Department of English</div>
+        <h1 class="teacher-page-title">Avanish Sir</h1>
+        <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Guardian of Expressive Arts, Rhetoric, and Literary Empathy."</p>
+      </div>
+
+      <!-- TRIBUTE SECTION FOR AVANISH SIR -->
+      <div class="glass-card reveal" style="margin-bottom: 2rem;">
+        <h2 style="color: #f1faee; margin-bottom: 1rem; font-family: var(--font-heading);">Heartfelt Tributes to Avanish Sir</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          Your English literature and language classes are more than just academic lectures—they are journeys through human emotions, philosophy, and eloquent expression. You taught us to look deeper into stories and find the underlying human truth within every text.
+        </p>
+
+        <div class="tribute-points-grid">
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>📖</span> Power of Articulation</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You helped us find our unique voice and gave us the vocabulary to express our dreams clearly.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🎭</span> Empathy Through Stories</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Through poetry and classic prose, you taught us to understand different perspectives in life.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>✒️</span> Eloquent Guidance</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Your constructive feedback on our writing inspired us to constantly refine our communication skills.</p>
+          </div>
+        </div>
+
+        <blockquote style="border-left: 3px solid #f1faee; padding-left: 1rem; font-style: italic; color: var(--soft-white); margin-top: 1rem;">
+          "Thank you, Avanish Sir, for teaching us that words have the power to change minds, heal hearts, and light up the world!"
+        </blockquote>
+      </div>
+
+      <!-- INTERACTIVE WIDGET -->
+      <div class="glass-card reveal">
+        <div class="interactive-widget-box" style="margin-top:0;">
+          <div class="widget-title">✒️ Interactive Literary Thought Generator</div>
+          <p style="color: var(--text-muted);">Generate literary insights inspired by class sessions:</p>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="nextLiteraryQuote()">Generate New Thought</button>
+          <div class="interactive-display" id="englishDisplay" style="color: #f1faee; font-family: var(--font-heading); font-size: 1.2rem;">"Words create worlds."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PAGE 2.3: DEDICATED PAGE — VAIBHAV SIR (CHEMISTRY)
+     ========================================================================== -->
+  <section id="teacher-vaibhav" class="page-section">
+    <div class="section-container">
+      <div class="back-btn" onclick="switchPage('teachers')">← Back to All Teachers</div>
+      
+      <div class="teacher-page-hero theme-chemistry">
+        <div class="teacher-page-sub">Department of Chemistry</div>
+        <h1 class="teacher-page-title">Vaibhav Sir</h1>
+        <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Catalyst of Knowledge, Master of Reactions, and Chemical Genius."</p>
+      </div>
+
+      <!-- TRIBUTE SECTION FOR VAIBHAV SIR -->
+      <div class="glass-card reveal" style="margin-bottom: 2rem;">
+        <h2 style="color: #e63946; margin-bottom: 1rem; font-family: var(--font-heading);">Heartfelt Tributes to Vaibhav Sir</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          Organic reaction mechanisms and physical chemistry equations can be daunting, but your enthusiastic teaching turns the subject into a fascinating science. You act as a true catalyst in our academic lives—speeding up our understanding while keeping us grounded.
+        </p>
+
+        <div class="tribute-points-grid">
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🧪</span> Reaction Mastery</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You made complex organic conversions look like simple, step-by-step puzzles.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>⚖️</span> Finding Equilibrium</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You taught us that balance is necessary not just in chemical equations, but in life as well.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🔬</span> Hands-On Mentorship</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Your guidance in the lab instilled in us scientific curiosity and strict analytical precision.</p>
+          </div>
+        </div>
+
+        <blockquote style="border-left: 3px solid #e63946; padding-left: 1rem; font-style: italic; color: var(--soft-white); margin-top: 1rem;">
+          "Thank you, Vaibhav Sir, for sparking a reaction of curiosity and academic excellence in all of us!"
+        </blockquote>
+      </div>
+
+      <!-- INTERACTIVE WIDGET -->
+      <div class="glass-card reveal">
+        <div class="interactive-widget-box" style="margin-top:0;">
+          <div class="widget-title">🧪 Virtual Reaction Simulator</div>
+          <p style="color: var(--text-muted);">Simulate chemical equilibrium reactions:</p>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="triggerReaction()">Trigger Reaction</button>
+          <div class="interactive-display" id="chemistryDisplay" style="color: #e63946;">System in Steady Equilibrium State.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PAGE 2.4: DEDICATED PAGE — SONU SIR (PHYSICS)
+     ========================================================================== -->
+  <section id="teacher-sonu" class="page-section">
+    <div class="section-container">
+      <div class="back-btn" onclick="switchPage('teachers')">← Back to All Teachers</div>
+      
+      <div class="teacher-page-hero theme-physics">
+        <div class="teacher-page-sub">Department of Physics</div>
+        <h1 class="teacher-page-title">Sonu Sir</h1>
+        <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Explorer of Cosmic Laws, Master of Dynamics, and Kinetic Mentor."</p>
+      </div>
+
+      <!-- TRIBUTE SECTION FOR SONU SIR -->
+      <div class="glass-card reveal" style="margin-bottom: 2rem;">
+        <h2 style="color: #a8dadc; margin-bottom: 1rem; font-family: var(--font-heading);">Heartfelt Tributes to Sonu Sir</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          From understanding gravitational fields to unraveling electromagnetic waves, your energy brings physics to life. You have helped us see that physics isn't just about formulas in a textbook; it is the fundamental language of the entire universe.
+        </p>
+
+        <div class="tribute-points-grid">
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>⚡</span> High-Energy Teaching</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Your passionate lectures keep the whole class engaged, energized, and constantly questioning.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🌌</span> Real-World Application</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You bridge theoretical laws with practical phenomena, making us see physics all around us.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🚀</span> Momentum & Force</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You inspire us to apply force in our studies and maintain positive momentum towards our goals.</p>
+          </div>
+        </div>
+
+        <blockquote style="border-left: 3px solid #457b9d; padding-left: 1rem; font-style: italic; color: var(--soft-white); margin-top: 1rem;">
+          "Thank you, Sonu Sir, for giving us the momentum to strive higher and explore the fundamental laws of life!"
+        </blockquote>
+      </div>
+
+      <!-- INTERACTIVE WIDGET -->
+      <div class="glass-card reveal">
+        <div class="interactive-widget-box" style="margin-top:0;">
+          <div class="widget-title">⚛️ Kinetic Vector Dynamics Monitor</div>
+          <p style="color: var(--text-muted);">Calculate live velocity and energy transfer:</p>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="simulateKineticForce()">Apply Force Vector</button>
+          <div class="interactive-display" id="physicsDisplay" style="color: #a8dadc;">Velocity = 0 m/s | Kinetic Energy = 0 Joules</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PAGE 2.5: DEDICATED PAGE — SANDEEP SIR (ARTIFICIAL INTELLIGENCE)
+     ========================================================================== -->
+  <section id="teacher-sandeep" class="page-section">
+    <div class="section-container">
+      <div class="back-btn" onclick="switchPage('teachers')">← Back to All Teachers</div>
+      
+      <div class="teacher-page-hero theme-ai">
+        <div class="teacher-page-sub">Department of Artificial Intelligence</div>
+        <h1 class="teacher-page-title">Sandeep Sir</h1>
+        <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Visionary of Innovation, Mentor of AI Technologies, and Tech Guide."</p>
+      </div>
+
+      <!-- TRIBUTE SECTION FOR SANDEEP SIR -->
+      <div class="glass-card reveal" style="margin-bottom: 2rem;">
+        <h2 style="color: #ff2a4b; margin-bottom: 1rem; font-family: var(--font-heading);">Heartfelt Tributes to Sandeep Sir</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          As our mentor in Artificial Intelligence, you have introduced us to the cutting-edge tools that will define the future of technology. You taught us that writing code isn't just about syntax, but about building meaningful solutions that solve real human challenges.
+        </p>
+
+        <div class="tribute-points-grid">
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>💻</span> Digital Visionary</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You keep Class 12 AI updated with the modern technological world and intelligent algorithms.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🤖</span> Practical Innovation</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You encourage hands-on project creation, pushing us to turn theoretical concepts into working models.</p>
+          </div>
+          <div class="tribute-point-card">
+            <div class="tribute-point-title"><span>🌐</span> Ethical Technology</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">You remind us that as AI developers, our primary duty is to build technology responsibly and ethically.</p>
+          </div>
+        </div>
+
+        <blockquote style="border-left: 3px solid #ff2a4b; padding-left: 1rem; font-style: italic; color: var(--soft-white); margin-top: 1rem;">
+          "Thank you, Sandeep Sir, for guiding Class 12 AI to decode the future and code a better world!"
+        </blockquote>
+      </div>
+
+      <!-- INTERACTIVE WIDGET -->
+      <div class="glass-card reveal">
+        <div class="interactive-widget-box" style="margin-top:0;">
+          <div class="widget-title">🧠 Neural Model Epoch Simulator</div>
+          <p style="color: var(--text-muted);">Run neural matrix optimization training steps:</p>
+          <button class="btn-primary" style="margin-top: 1rem;" onclick="trainNeuralEpoch()">Run Epoch Training</button>
+          <div class="interactive-display" id="aiDisplay" style="color: #ff2a4b;">Model Idle. Epoch 0/100 | Loss: --</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: TRIBUTE -->
+  <section id="tribute" class="page-section">
+    <div class="tribute-container">
+      <div class="tribute-step reveal">
+        <h2 style="color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px;">More Than Teachers</h2>
+      </div>
+      <div class="tribute-step reveal"><p class="statement">You didn't just teach us subjects.</p></div>
+      <div class="tribute-step reveal"><p class="statement">You taught us how to think critically.</p></div>
+      <div class="tribute-step reveal"><p class="statement">You taught us how to question assumptions.</p></div>
+      <div class="tribute-step reveal"><p class="statement">You taught us how to learn from our mistakes.</p></div>
+      <div class="tribute-step reveal"><p class="statement">You taught us to believe in our potential.</p></div>
+      <div class="tribute-step reveal" style="margin-top: 3rem;">
+        <p style="color: var(--text-muted); font-size: 1.2rem;">For every lesson, correction, and moment of encouragement...</p>
+        <h1 class="climax-text" style="margin-top: 1rem;">THANK YOU, TEACHERS. ❤️</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4: MEMORIES -->
+  <section id="memories" class="page-section">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <h1 class="section-title">Moments We’ll Remember</h1>
+        <p style="color: var(--text-muted);">A visual repository of classroom learning and celebration.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" onclick="openLightbox('Mathematics Problem Solving Sessions')"><span style="font-size:2rem;">📐</span><span>Math Interactive Sessions</span></div>
+        <div class="gallery-item reveal" onclick="openLightbox('English Literary Debates')"><span style="font-size:2rem;">📚</span><span>Literary Seminars</span></div>
+        <div class="gallery-item reveal" onclick="openLightbox('Chemistry Laboratory Experiments')"><span style="font-size:2rem;">🧪</span><span>Chemistry Experiments</span></div>
+        <div class="gallery-item reveal" onclick="openLightbox('Physics Dynamics Demonstrations')"><span style="font-size:2rem;">⚡</span><span>Physics Demonstrations</span></div>
+        <div class="gallery-item reveal" onclick="openLightbox('Class 12 AI Projects Exhibition')"><span style="font-size:2rem;">🤖</span><span>AI Exhibitions</span></div>
+        <div class="gallery-item reveal" onclick="openLightbox('Teachers Day Celebration')"><span style="font-size:2rem;">🎉</span><span>Teachers' Day Celebration</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <h3 id="lightboxTitle" style="color: var(--pure-white); margin-bottom: 1rem;"></h3>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Placeholder for photograph / celebration visual.</p>
+      <button class="btn-primary" onclick="closeLightbox()">Close</button>
+    </div>
+  </div>
+
+  <!-- PAGE 5: THANK YOU LETTER -->
+  <section id="thankyou" class="page-section">
+    <div class="letter-container">
+      <article class="letter-card reveal">
+        <h1 class="letter-title">A Letter From Your Students</h1>
+        <div class="letter-body">
+          <p>Dear Teachers,</p><br>
+          <p>As we navigate through the complexities of our senior year curriculum—from complex mathematical formulas to deep computational neural networks—we realize that our greatest lessons haven't just come from textbooks, but from your endless dedication.</p><br>
+          <p>You have inspired us to learn beyond limits, explore new ideas, think critically, and prepare with confidence for the future.</p>
+        </div>
+        <div class="signature-block">
+          <p style="color: var(--text-muted);">With Respect, Gratitude & Love,</p>
+          <p class="sig-text">Class 12 AI Students</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PAGE 6: CREDITS -->
+  <section id="credits" class="page-section">
+    <div class="credits-container">
+      <div class="reveal">
+        <h1 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--pure-white);">This Tribute Was Created With Gratitude</h1>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Project Created By Class 12 AI Students</p>
+      </div>
+      <div class="team-grid reveal">
+        <div class="member-card">Shreyash</div>
+        <div class="member-card">Adarsh</div>
+        <div class="member-card">Ritesh</div>
+        <div class="member-card">Shobhit</div>
+        <div class="member-card">Shashank</div>
+        <div class="member-card">Ishu</div>
+        <div class="member-card">Emmanuel</div>
+      </div>
+      <p class="reveal" style="font-style: italic; color: var(--text-muted);">"A small digital tribute for the teachers who make a big difference."</p>
+      <footer class="reveal" style="margin-top: 5rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+        <h2 style="color: var(--accent-red);">❤️ HAPPY TEACHERS’ DAY</h2>
+        <p style="font-size: 0.95rem; margin-top: 0.8rem; color: var(--pure-white);">
+          With gratitude from the Class 12 AI students of<br>
+          <strong>VARANASI PUBLIC SCHOOL</strong>
+        </p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+          Shreyash • Adarsh • Ritesh • Shobhit • Shashank • Ishu • Emmanuel
+        </p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- JS CONTROLLER -->
+  <script>
+    // Page Switcher Engine
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
+      const targetSection = document.getElementById(pageId);
+      if (targetSection) targetSection.classList.add('active-section');
+
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      const activeLink = Array.from(navItems).find(item => item.getAttribute('onclick') && item.getAttribute('onclick').includes(pageId));
+      if (activeLink) activeLink.classList.add('active');
+
+      document.getElementById('navLinks').classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      triggerReveals();
+    }
+
+    // Glow Cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+    function triggerReveals() {
+      const reveals = document.querySelectorAll('.active-section .reveal');
+      reveals.forEach((el, idx) => {
+        setTimeout(() => el.classList.add('active'), idx * 120);
+      });
+    }
+
+    // Lightbox Modal Functions
+    function openLightbox(title) {
+      document.getElementById('lightboxTitle').innerText = title;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Interactive Widget Functions
+    let mathStep = 0;
+    const mathSteps = [
+      "Step 1: Evaluate ∫ (2x + 5) dx",
+      "Step 2: Apply power rule -> 2(x²/2) + 5x + C",
+      "Step 3: Simplify terms -> x² + 5x + C",
+      "Result: Solved with logical mathematical precision!"
+    ];
+    function nextMathStep() {
+      document.getElementById('mathDisplay').innerText = mathSteps[mathStep];
+      mathStep = (mathStep + 1) % mathSteps.length;
+    }
+
+    const englishQuotes = [
+      '"Literature is the expression of life in words of truth and beauty." - Avanish Sir Class Note',
+      '"A word fitly spoken is like apples of gold in settings of silver."',
+      '"To articulate clearly is to think clearly."'
+    ];
+    let quoteIdx = 0;
+    function nextLiteraryQuote() {
+      quoteIdx = (quoteIdx + 1) % englishQuotes.length;
+      document.getElementById('englishDisplay').innerText = englishQuotes[quoteIdx];
+    }
+
+    function triggerReaction() {
+      const reactions = [
+        "2H₂ + O₂ → 2H₂O (Exothermic Spark Reaction)",
+        "Acid-Base Neutralization Complete | pH = 7.0",
+        "Catalytic Acceleration Initiated!"
+      ];
+      const rand = reactions[Math.floor(Math.random() * reactions.length)];
+      document.getElementById('chemistryDisplay').innerText = rand;
+    }
+
+    function simulateKineticForce() {
+      const velocity = (Math.random() * 50 + 10).toFixed(2);
+      const energy = (0.5 * 10 * velocity * velocity).toFixed(2);
+      document.getElementById('physicsDisplay').innerText = `Velocity = ${velocity} m/s | Kinetic Energy = ${energy} Joules`;
+    }
+
+    let epoch = 0;
+    function trainNeuralEpoch() {
+      if (epoch < 100) epoch += 25;
+      const loss = (1 / (epoch + 1)).toFixed(4);
+      document.getElementById('aiDisplay').innerText = `Training Neural Net... Epoch ${epoch}/100 | Loss: ${loss} | Accuracy: ${100 - loss * 10}%`;
+    }
+
+    document.addEventListener('DOMContentLoaded', triggerReveals);
+  </script>
+</body>
+</html>
