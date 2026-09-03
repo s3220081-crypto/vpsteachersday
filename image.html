@@ -47,7 +47,7 @@
     }
 
     /* ==========================================================================
-       2.5D PROCEDURAL BACKGROUND (CHAOS REMOVED, STRUCTURE ADDED)
+       2. 2.5D PROCEDURAL BACKGROUND
        ========================================================================== */
     .procedural-2d5-bg {
       position: fixed;
@@ -267,12 +267,13 @@
         flex: 0 0 35%;
         background: #000;
         position: relative;
+        min-height: 300px;
     }
     .article-img-container img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.85;
+        opacity: 0.9;
         transition: opacity 0.3s ease;
     }
     .article-img-container:hover img { opacity: 1; }
@@ -294,10 +295,6 @@
     .teacher-page-hero { padding: 3.5rem; border-radius: 20px; margin-bottom: 2.5rem; position: relative; overflow: hidden; border: 1px solid var(--glass-border); }
     .teacher-page-title { font-family: var(--font-heading); font-size: 3.2rem; color: var(--pure-white); margin-bottom: 0.5rem; }
     .teacher-page-sub { font-size: 1.2rem; color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-    
-    .tribute-points-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .tribute-point-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 12px; }
-    .tribute-point-title { font-weight: 700; color: var(--pure-white); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
 
     .interactive-widget-box { background: var(--bg-charcoal); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; margin-top: 2rem; }
     .widget-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem; color: var(--pure-white); }
@@ -344,7 +341,7 @@
 </head>
 <body>
 
-  <!-- Clean 2.5D Procedural Background -->
+  <!-- 2.5D Procedural Background -->
   <div class="procedural-2d5-bg"></div>
 
   <!-- Navbar -->
@@ -441,14 +438,13 @@
         <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Master of Logic, Architect of Precision, and Mentor of Analytical Minds."</p>
       </div>
 
-      <!-- NEW: ARTICLE SESSION WITH IMAGE -->
+      <!-- ARTICLE SESSION -->
       <article class="article-session glass-card reveal theme-math">
         <div class="article-img-container">
-          <!-- Placeholder Image Reference -->
-          <img src="https://placehold.co/600x800/181820/ff4d5e?text=Abhishek+Sir\nReference+Image" alt="Portrait of Abhishek Sir">
+          <img id="img-abhishek" alt="Abhishek Sir Photo">
         </div>
         <div class="article-content">
-          <div class="article-tag">In-Depth Review</div>
+          <div class="article-tag">In-Depth Article</div>
           <h3 class="article-heading">The Architect of Logic</h3>
           <div class="article-body">
             <p>Mathematics can often feel intimidating, an abstract landscape of numbers and variables. But in Abhishek Sir's classroom, complex formulas and intricate calculus integrals are methodically broken down into clear, digestible steps of pure logic.</p>
@@ -482,13 +478,13 @@
         <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Guardian of Expressive Arts, Rhetoric, and Literary Empathy."</p>
       </div>
 
-      <!-- NEW: ARTICLE SESSION WITH IMAGE -->
+      <!-- ARTICLE SESSION -->
       <article class="article-session glass-card reveal theme-english">
         <div class="article-img-container">
-          <img src="https://placehold.co/600x800/181820/f1faee?text=Avanish+Sir\nReference+Image" alt="Portrait of Avanish Sir">
+          <img id="img-avanish" alt="Avanish Sir Photo">
         </div>
         <div class="article-content">
-          <div class="article-tag">In-Depth Review</div>
+          <div class="article-tag">In-Depth Article</div>
           <h3 class="article-heading">The Voice of Literature</h3>
           <div class="article-body">
             <p>Avanish Sir's English literature classes transcend traditional academic lectures. They are immersive journeys into human emotion, classical philosophy, and the art of eloquent expression.</p>
@@ -522,13 +518,13 @@
         <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Catalyst of Knowledge, Master of Reactions, and Chemical Genius."</p>
       </div>
 
-      <!-- NEW: ARTICLE SESSION WITH IMAGE -->
+      <!-- ARTICLE SESSION -->
       <article class="article-session glass-card reveal theme-chemistry">
         <div class="article-img-container">
-          <img src="https://placehold.co/600x800/181820/e63946?text=Vaibhav+Sir\nReference+Image" alt="Portrait of Vaibhav Sir">
+          <img id="img-vaibhav" alt="Vaibhav Sir Photo">
         </div>
         <div class="article-content">
-          <div class="article-tag">In-Depth Review</div>
+          <div class="article-tag">In-Depth Article</div>
           <h3 class="article-heading">The Master Catalyst</h3>
           <div class="article-body">
             <p>Organic reaction mechanisms and physical chemistry equations can easily become overwhelming, but Vaibhav Sir's enthusiastic and dynamic teaching style transforms the subject into an accessible and fascinating science.</p>
@@ -562,13 +558,13 @@
         <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Explorer of Cosmic Laws, Master of Dynamics, and Kinetic Mentor."</p>
       </div>
 
-      <!-- NEW: ARTICLE SESSION WITH IMAGE -->
+      <!-- ARTICLE SESSION -->
       <article class="article-session glass-card reveal theme-physics">
         <div class="article-img-container">
-          <img src="https://placehold.co/600x800/181820/a8dadc?text=Sonu+Sir\nReference+Image" alt="Portrait of Sonu Sir">
+          <img id="img-sonu" alt="Sonu Sir Photo">
         </div>
         <div class="article-content">
-          <div class="article-tag">In-Depth Review</div>
+          <div class="article-tag">In-Depth Article</div>
           <h3 class="article-heading">The Force of Education</h3>
           <div class="article-body">
             <p>From mapping gravitational fields to unraveling the invisible spectrum of electromagnetic waves, Sonu Sir’s high-energy approach literally brings the principles of physics to life. He bridges the gap between theoretical textbook physics and real-world phenomena.</p>
@@ -602,13 +598,13 @@
         <p style="font-style: italic; color: var(--soft-white); font-size: 1.15rem;">"Visionary of Innovation, Mentor of AI Technologies, and Tech Guide."</p>
       </div>
 
-      <!-- NEW: ARTICLE SESSION WITH IMAGE -->
+      <!-- ARTICLE SESSION -->
       <article class="article-session glass-card reveal theme-ai">
         <div class="article-img-container">
-          <img src="https://placehold.co/600x800/181820/ff2a4b?text=Sandeep+Sir\nReference+Image" alt="Portrait of Sandeep Sir">
+          <img id="img-sandeep" alt="Sandeep Sir Photo">
         </div>
         <div class="article-content">
-          <div class="article-tag">In-Depth Review</div>
+          <div class="article-tag">In-Depth Article</div>
           <h3 class="article-heading">The Visionary of Tech</h3>
           <div class="article-body">
             <p>As the primary mentor for Class 12 AI, Sandeep Sir has the crucial task of introducing students to the cutting-edge algorithms and neural networks that will heavily influence the next decade of digital evolution.</p>
@@ -720,6 +716,32 @@
 
   <!-- JS CONTROLLER -->
   <script>
+    /* ==========================================================================
+       IMAGE CONFIGURATION SCRIPT — LOAD DIRECT LOCAL PHOTO URLS
+       ========================================================================== */
+    // Change these simple filenames to match your photos stored in your local directory (or 'images/' folder)
+    const list = {
+      abhishek: "abhishek.jpg", // e.g. "abhishek.jpg" or "images/abhishek.jpg"
+      avanish:  "avanish.jpg",  // e.g. "avanish.jpg" or "images/avanish.jpg"
+      vaibhav:  "vaibhav.jpg",  // e.g. "vaibhav.jpg" or "images/vaibhav.jpg"
+      sonu:     "sonu.jpg",     // e.g. "sonu.jpg" or "images/sonu.jpg"
+      sandeep:  "sandeep.jpg"   // e.g. "sandeep.jpg" or "images/sandeep.jpg"
+    };
+
+    // Script to inject photo URLs dynamically into each article session
+    function loadTeacherImages() {
+      Object.keys(list).forEach(key => {
+        const imgEl = document.getElementById(`img-${key}`);
+        if (imgEl) {
+          imgEl.src = list[key];
+          // Fallback if image fails to load
+          imgEl.onerror = () => {
+            imgEl.src = `https://placehold.co/600x800/181820/ffffff?text=${key.toUpperCase()}+SIR\n(Image+Not+Found)`;
+          };
+        }
+      });
+    }
+
     // Page Switcher Engine
     function switchPage(pageId) {
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
@@ -803,7 +825,10 @@
       document.getElementById('aiDisplay').innerText = `Training Neural Net... Epoch ${epoch}/100 | Loss: ${loss} | Accuracy: ${100 - loss * 10}%`;
     }
 
-    document.addEventListener('DOMContentLoaded', triggerReveals);
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTeacherImages();
+      triggerReveals();
+    });
   </script>
 </body>
 </html>
